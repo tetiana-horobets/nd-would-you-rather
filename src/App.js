@@ -1,15 +1,31 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {_getUsers} from './_DATA.js';
+import { connect } from 'react-redux'
+import {loadUsers} from './store/ActionCreators.js'
 
-export default class App extends React.Component {
+
+class App extends React.Component {
 
   componentDidMount(){
-    _getUsers().then(data => console.log(data))
+    this.props.loadUsers();
   }
 
   render() {
+    console.log(this.props);
     return <h1>Hello</h1>;
   }
 }
+
+const mapStateToProps = (state /*, ownProps*/) => {
+  return {
+    users: state.users
+  }
+}
+
+const mapDispatchToProps = {loadUsers}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
