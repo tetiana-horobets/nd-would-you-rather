@@ -1,6 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import {loadUsers, selectUser, logout, loadQuestions} from './store/ActionCreators.js'
+import HomePage from './HomePage.js'
+import LeaderboardPage from './LeaderboardPage.js'
+import {
+  BrowserRouter as Router,
+  Route
+} from "react-router-dom";
 
 class App extends React.Component {
 
@@ -18,6 +24,13 @@ class App extends React.Component {
   }
 
   render() {
+    return <Router>
+      <Route path="/" exact component={() => <HomePage/>}/>
+      <Route path="/leaderboard" component={() => <LeaderboardPage/>}/>
+    </Router>
+  }
+
+  render2() {
     if (this.props.selectedUser) {
       const questions = Object.entries(this.props.questions).map(entry => <li key={entry[1].id} >{entry[1].id}</li>);
 
