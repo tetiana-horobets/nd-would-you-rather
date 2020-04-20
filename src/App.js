@@ -1,29 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import { connect } from 'react-redux'
-import {loadUsers} from './store/ActionCreators.js'
+import {loadUsers, selectUser} from './store/ActionCreators.js'
 
 
 class App extends React.Component {
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.loadUsers();
   }
 
+  selectUser(id) {
+    this.props.selectUser(id);
+  }
+
   render() {
-    console.log(this.props);
-    return <h1>Hello</h1>;
+    if (this.props.selectedUser) {
+      return <div><h1>Current user: {this.props.selectedUser}</h1></div>
+    }
+    const users = Object.entries(this.props.users).map(entry => <li key={entry[1].id} onClick={() => this.selectUser(entry[1].id)}>{entry[1].name}</li>);
+    return <div>{users}</div>
   }
 }
 
 const mapStateToProps = (state /*, ownProps*/) => {
   return {
-    users: state.users
+    users: state.users,
+    selectedUser: state.selectedUser
   }
 }
 
-const mapDispatchToProps = {loadUsers}
+const mapDispatchToProps = {loadUsers, selectUser}
 
 export default connect(
   mapStateToProps,
