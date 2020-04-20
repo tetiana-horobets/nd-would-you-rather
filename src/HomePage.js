@@ -1,6 +1,7 @@
 import React from 'react';
-import {Redirect, Link} from "react-router-dom";
+import {Redirect, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
+import QuestionPreview from './components/QuestionPreview.js';
 
 class HomePage extends React.Component {
 
@@ -8,7 +9,12 @@ class HomePage extends React.Component {
     if (!this.props.selectedUser) {
       return <Redirect to={'/signin'}/>
     }
-    const questions = Object.entries(this.props.questions).map(entry => <li key={entry[1].id} >{entry[1].id}</li>);
+
+    const questions = Object.entries(this.props.questions)
+      .map(entry => <QuestionPreview
+        key={entry[1].id}
+        question={entry[1]}
+      />);
 
     return <div>
       <h1>Current user: {this.props.selectedUser}</h1>
