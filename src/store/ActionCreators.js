@@ -1,4 +1,4 @@
-import {LOAD_USERS, SELECT_USER} from './Actions.js'
+import {LOAD_USERS, SELECT_USER, LOGOUT} from './Actions.js'
 import {_getUsers} from '../_DATA.js';
 
 export function loadUsers() {
@@ -14,5 +14,11 @@ export function selectUser(userId) {
   return {
       type: SELECT_USER,
       selectedUser: userId
+  }
+}
+
+export function logout() {
+  return {
+      type: LOGOUT
   }
 }
