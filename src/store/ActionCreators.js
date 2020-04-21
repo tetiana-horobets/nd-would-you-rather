@@ -1,4 +1,10 @@
-import {LOAD_USERS, LOAD_QUESTIONS, SELECT_USER, LOGOUT} from './Actions.js'
+import {
+  LOAD_USERS,
+  LOAD_QUESTIONS,
+  SELECT_USER,
+  LOGOUT,
+  CHANGE_QUESTIONS_DISPLAY_PREFERENCE
+} from './Actions.js'
 import {_getUsers, _getQuestions} from '../_DATA.js';
 
 export function loadUsers() {
@@ -29,5 +35,19 @@ export function selectUser(userId) {
 export function logout() {
   return {
       type: LOGOUT
+  }
+}
+
+export function showAnsweredQuestions() {
+  return {
+      type: CHANGE_QUESTIONS_DISPLAY_PREFERENCE,
+      displayedQuestions: 'ANSWERED'
+  }
+}
+
+export function showUnansweredQuestions() {
+  return {
+      type: CHANGE_QUESTIONS_DISPLAY_PREFERENCE,
+      displayedQuestions: 'UNANSWERED'
   }
 }

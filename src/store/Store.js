@@ -1,6 +1,12 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import {LOAD_USERS, LOAD_QUESTIONS, SELECT_USER, LOGOUT} from './Actions.js'
+import {
+  LOAD_USERS,
+  LOAD_QUESTIONS,
+  SELECT_USER,
+  LOGOUT,
+  CHANGE_QUESTIONS_DISPLAY_PREFERENCE
+} from './Actions.js'
 import { combineReducers } from 'redux'
 
 function usersReducer(state = {}, action) {
@@ -27,10 +33,18 @@ function selectedUserReducer(state = null, action) {
   return state;
 }
 
+function questionsDisplayPreferenceReducer(state = 'UNANSWERED', action) {
+  if (action.type === CHANGE_QUESTIONS_DISPLAY_PREFERENCE) {
+    return action.displayedQuestions;
+  }
+  return state;
+}
+
 const store = createStore(combineReducers({
   users: usersReducer,
   selectedUser: selectedUserReducer,
-  questions: questionsReducer
+  questions: questionsReducer,
+  questionsDisplayPreference: questionsDisplayPreferenceReducer
 }), applyMiddleware(thunk));
 
 export default store;
