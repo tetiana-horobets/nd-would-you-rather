@@ -5,6 +5,7 @@ import HomePage from './HomePage.js';
 import LeaderboardPage from './LeaderboardPage.js';
 import SigninPage from './SigninPage.js';
 import LogoutPage from './LogoutPage.js';
+import QuestionPage from './QuestionPage.js';
 
 import {
   BrowserRouter as Router,
@@ -24,6 +25,10 @@ class App extends React.Component {
       <Route path="/leaderboard" component={() => <LeaderboardPage/>}/>
       <Route path="/signin" component={() => <SigninPage/>}/>
       <Route path="/logout" component={() => <LogoutPage/>}/>
+      <Route path="/question/:id" component={(a) => {
+        console.log(a);
+        return <QuestionPage/>
+      }}/>
     </Router>
   }
 }
