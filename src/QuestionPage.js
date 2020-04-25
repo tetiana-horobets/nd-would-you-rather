@@ -1,8 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import {vote} from './store/ActionCreators.js';
 
 class QuestionPage extends React.Component {
+
+  vote(option) {
+    this.props.vote(this.props.selectedUser, this.props.questionId, option);
+  }
 
   hasVoted(question) {
     return question.optionOne.votes.includes(this.props.selectedUser)
@@ -33,8 +38,8 @@ class QuestionPage extends React.Component {
 
     return <div>
       <h1>Would you rather?</h1>
-      <div>{question.optionOne.text}</div>
-      <div>{question.optionTwo.text}</div>
+      <div onClick={() => this.vote(1)}>{question.optionOne.text}</div>
+      <div onClick={() => this.vote(2)}>{question.optionTwo.text}</div>
     </div>
   }
 }
@@ -46,7 +51,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {vote}
 
 export default connect(
   mapStateToProps,

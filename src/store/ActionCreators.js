@@ -3,9 +3,19 @@ import {
   LOAD_QUESTIONS,
   SELECT_USER,
   LOGOUT,
-  CHANGE_QUESTIONS_DISPLAY_PREFERENCE
+  CHANGE_QUESTIONS_DISPLAY_PREFERENCE,
+  VOTE
 } from './Actions.js'
 import {_getUsers, _getQuestions} from '../_DATA.js';
+
+export function vote(userId, questionId, vote) {
+  return {
+      type: VOTE,
+      userId: userId,
+      questionId: questionId,
+      vote: vote
+  }
+}
 
 export function loadUsers() {
   return dispatch => {

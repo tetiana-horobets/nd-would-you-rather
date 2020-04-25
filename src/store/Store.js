@@ -5,7 +5,8 @@ import {
   LOAD_QUESTIONS,
   SELECT_USER,
   LOGOUT,
-  CHANGE_QUESTIONS_DISPLAY_PREFERENCE
+  CHANGE_QUESTIONS_DISPLAY_PREFERENCE,
+  VOTE
 } from './Actions.js'
 import { combineReducers } from 'redux'
 
@@ -17,14 +18,27 @@ function usersReducer(state = {}, action) {
 }
 
 function questionsReducer(state = {}, action) {
-  if (action.type === LOAD_QUESTIONS){
+  if (action.type === LOAD_QUESTIONS) {
     return action.questions;
   }
+
+  if (action.type === VOTE) {
+    const newQuestions = Object.assign({}, state);
+
+    if (action.vote === 1) {
+      newQuestions[action.questionId].optionOne.votes.push(action.userId);
+    } else {
+      newQuestions[action.questionId].optionOne.votes.push(action.userId);
+    }
+
+    return newQuestions;
+  }
+
   return state;
 }
 
 function selectedUserReducer(state = null, action) {
-  if (action.type === SELECT_USER){
+  if (action.type === SELECT_USER) {
     return action.selectedUser;
   }
   if (action.type === LOGOUT) {
