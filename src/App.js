@@ -25,10 +25,10 @@ class App extends React.Component {
       <Route path="/leaderboard" component={() => <LeaderboardPage/>}/>
       <Route path="/signin" component={() => <SigninPage/>}/>
       <Route path="/logout" component={() => <LogoutPage/>}/>
-      <Route path="/question/:id" component={(a) => {
-        console.log(a);
-        return <QuestionPage/>
-      }}/>
+      <Route
+        path="/question/:id"
+        component={(data) => <QuestionPage questionId={data.match.params.id}
+      />}/>
     </Router>
   }
 }
