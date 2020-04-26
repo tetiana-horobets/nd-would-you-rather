@@ -6,9 +6,11 @@ import {
   CHANGE_QUESTIONS_DISPLAY_PREFERENCE,
   VOTE
 } from './Actions.js'
-import {_getUsers, _getQuestions} from '../_DATA.js';
+import {_getUsers, _getQuestions, _saveQuestionAnswer} from '../_DATA.js';
 
 export function vote(userId, questionId, vote) {
+  const answer = {authedUser: userId, qid: questionId, answer: vote};
+  _saveQuestionAnswer(answer);
   return {
       type: VOTE,
       userId: userId,
