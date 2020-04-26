@@ -38,8 +38,8 @@ class QuestionPage extends React.Component {
 
     return <div>
       <h1>Would you rather?</h1>
-      <div onClick={() => this.vote(1)}>{question.optionOne.text}</div>
-      <div onClick={() => this.vote(2)}>{question.optionTwo.text}</div>
+      <div onClick={() => this.vote('optionOne')}>{question.optionOne.text}</div>
+      <div onClick={() => this.vote('optionTwo')}>{question.optionTwo.text}</div>
     </div>
   }
 }

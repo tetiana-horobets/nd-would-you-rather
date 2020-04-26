@@ -25,7 +25,7 @@ function questionsReducer(state = {}, action) {
   if (action.type === VOTE) {
     const newQuestions = Object.assign({}, state);
 
-    if (action.vote === 1) {
+    if (action.vote === 'optionOne') {
       newQuestions[action.questionId].optionOne.votes.push(action.userId);
     } else {
       newQuestions[action.questionId].optionOne.votes.push(action.userId);
