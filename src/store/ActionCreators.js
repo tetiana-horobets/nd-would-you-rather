@@ -4,9 +4,21 @@ import {
   SELECT_USER,
   LOGOUT,
   CHANGE_QUESTIONS_DISPLAY_PREFERENCE,
-  VOTE
+  VOTE,
+  CREATE_NEW_QUESTION
 } from './Actions.js'
-import {_getUsers, _getQuestions, _saveQuestionAnswer} from '../_DATA.js';
+import {_getUsers, _getQuestions, _saveQuestionAnswer, _saveQuestion} from '../_DATA.js';
+
+export function createNewQuestion(optionOneText, optionTwoText, userId) {
+  const question = {optionOneText: optionOneText, optionTwoText: optionTwoText, userId: userId};
+  _saveQuestion(question);
+  return {
+      type: CREATE_NEW_QUESTION,
+      userId: userId,
+      optionOneText: optionOneText,
+      optionTwoText: optionTwoText
+  }
+}
 
 export function vote(userId, questionId, vote) {
   const answer = {authedUser: userId, qid: questionId, answer: vote};
