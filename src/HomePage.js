@@ -44,7 +44,8 @@ class HomePage extends React.Component {
 
     return <div>
        <h1>Current user: {this.props.selectedUser}</h1>
-       <Link to={'/logout'}>Logout</Link>
+       <Link to={'/logout'}>Logout</Link><br/>
+       <Link to={'/new-question'}>Create new question</Link>
        <div>
         {this.props.questionsDisplayPreference === 'ANSWERED' && this.renderAnsweredQuestions()}
         {this.props.questionsDisplayPreference === 'UNANSWERED' && this.renderUnansweredQuestions()}

@@ -9,14 +9,18 @@ import {
 } from './Actions.js'
 import {_getUsers, _getQuestions, _saveQuestionAnswer, _saveQuestion} from '../_DATA.js';
 
-export function createNewQuestion(optionOneText, optionTwoText, userId) {
-  const question = {optionOneText: optionOneText, optionTwoText: optionTwoText, userId: userId};
-  _saveQuestion(question);
-  return {
-      type: CREATE_NEW_QUESTION,
-      userId: userId,
+export function createNewQuestion(optionOneText, optionTwoText, author) {
+  return dispatch => {
+    const question = {
       optionOneText: optionOneText,
-      optionTwoText: optionTwoText
+      optionTwoText: optionTwoText,
+      author: author
+    };
+    _saveQuestion(question).then(data => {
+      loadQuestions()(dispatch);
+      loadUsers()(dispatch);
+      dispatch({type: CREATE_NEW_QUESTION});
+    })
   }
 }
 

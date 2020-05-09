@@ -26,7 +26,7 @@ class App extends React.Component {
       <Route path="/leaderboard" component={() => <LeaderboardPage/>}/>
       <Route path="/signin" component={() => <SigninPage/>}/>
       <Route path="/logout" component={() => <LogoutPage/>}/>
-      <Route path="/newQuestion" component={() => <NewQuestion/>}/>
+      <Route path="/new-question" component={() => <NewQuestion/>}/>
       <Route
         path="/question/:id"
         component={(data) => <QuestionPage questionId={data.match.params.id}
