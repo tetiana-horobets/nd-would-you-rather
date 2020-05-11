@@ -7,6 +7,7 @@ import SigninPage from './SigninPage.js';
 import LogoutPage from './LogoutPage.js';
 import QuestionPage from './QuestionPage.js';
 import NewQuestion from './NewQuestion.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {
   BrowserRouter as Router,

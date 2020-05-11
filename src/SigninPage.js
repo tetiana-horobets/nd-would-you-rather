@@ -2,6 +2,9 @@ import React from 'react';
 import {selectUser} from './store/ActionCreators.js';
 import {Redirect} from "react-router-dom";
 import { connect } from 'react-redux';
+import Container from 'react-bootstrap/Container'
+import Card from 'react-bootstrap/Card'
+import Dropdown from 'react-bootstrap/Dropdown'
 
 class SigninPage extends React.Component {
 
@@ -13,8 +16,24 @@ class SigninPage extends React.Component {
     if (this.props.selectedUser) {
       return <Redirect to={'/'}/>
     }
-    const users = Object.entries(this.props.users).map(entry => <li key={entry[1].id} onClick={() => this.selectUser(entry[1].id)}>{entry[1].name}</li>);
-    return <div>{users}</div>
+    const users = Object.entries(this.props.users)
+      .map(entry => <Dropdown.Item key={entry[1].id} onClick={() => this.selectUser(entry[1].id)}>{entry[1].name}</Dropdown.Item>);
+    //return <div>{users}</div>
+    return <Container>
+      <Card style={{ width: '22rem', margin: '1em auto'}}>
+        <Card.Body>
+          <Card.Title>Welcome to Would You Rather!</Card.Title>
+          <Card.Text>
+            <Dropdown>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                Select user
+              </Dropdown.Toggle>
+              <Dropdown.Menu>{users}</Dropdown.Menu>
+            </Dropdown>
+          </Card.Text>
+        </Card.Body>
+      </Card>
+    </Container>
   }
 }
 
