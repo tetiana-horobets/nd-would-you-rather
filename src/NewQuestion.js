@@ -4,18 +4,24 @@ import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
 class NewQuestion extends React.Component {
+
   state = {
-   optionOne: {},
-   optionTwo: {}
- }
+   optionOne: '',
+   optionTwo: ''
+  }
 
   changeHandlerOptionOne = (event) => {
       this.setState({optionOne: event.target.value});
-    }
+  }
 
   changeHandlerOptionTwo = (event) => {
       this.setState({optionTwo: event.target.value});
-    }
+  }
+
+  createNewQuestion() {
+    this.props.createNewQuestion(this.state.optionOne, this.state.optionTwo, this.props.selectedUser);
+    this.setState({optionOne: '', optionTwo: ''});
+  }
 
   render() {
     if (!this.props.selectedUser) {
@@ -25,10 +31,10 @@ class NewQuestion extends React.Component {
     return <div>
     <h1>Create new question</h1>
       <h2>Would you rather ...</h2>
-        <input type="text" name="optionOne" onChange={this.changeHandlerOptionOne}/>
+        <input type="text" name="optionOne" value={this.state.optionOne} onChange={this.changeHandlerOptionOne}/>
           <h4>OR</h4>
-        <input type="text" name="optionTwo" onChange={this.changeHandlerOptionTwo}/>
-      <button onClick={() => this.props.createNewQuestion(this.state.optionOne, this.state.optionTwo, this.props.selectedUser)}>Submit</button>
+        <input type="text" name="optionTwo" value={this.state.optionTwo} onChange={this.changeHandlerOptionTwo}/>
+      <button onClick={() => this.createNewQuestion()}>Submit</button>
       {this.props.qestionCreated && <p>Quetion has been created</p>}
     </div>
   }
