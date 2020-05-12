@@ -1,8 +1,9 @@
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import { connect } from 'react-redux';
 
-export default class Navber extends React.Component {
+class AppNavbar extends React.Component {
 
   render() {
     return <Navbar bg="light" expand="lg">
@@ -15,6 +16,25 @@ export default class Navber extends React.Component {
           <Nav.Link href="/leaderboard">Leader Board</Nav.Link>
         </Nav>
       </Navbar.Collapse>
+      {this.props.users && this.props.selectedUser && <Navbar.Collapse className="justify-content-end">
+        <Navbar.Text>
+          Signed in as: {this.props.users[this.props.selectedUser].name}
+        </Navbar.Text>
+      </Navbar.Collapse>}
     </Navbar>
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    users: state.users,
+    selectedUser: state.selectedUser
+  }
+}
+
+const mapDispatchToProps = {}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AppNavbar);
