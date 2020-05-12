@@ -1,5 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Navbar from './components/Navbar.js';
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Image from 'react-bootstrap/Image';
 
 class LeaderboardPage extends React.Component {
 
@@ -14,17 +18,30 @@ class LeaderboardPage extends React.Component {
     }
   }
 
+  renderCard(user) {
+    return <Card key={user.id} style={{ width: '22rem', margin: '1em auto'}}>
+      <Card.Body>
+        <Card.Title>{user.name}</Card.Title>
+        <Card.Text>
+          {user.avatarURL && <Image src={user.avatarURL} rounded />}
+          <p>Answered questions: {user.stats.questions}</p>
+          <p>Created questions: {user.stats.answers}</p>
+          <p>Score: {user.stats.score}</p>
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  }
+
   render() {
     const users = Object.values(this.props.users)
       .map(user => Object.assign({}, user, {stats: this.getStats(user)}))
       .sort((user1, user2) => user2.stats.score - user1.stats.score)
-      .map(user => <div key={user.id}>{user.name}
-          questions: {user.stats.questions}
-          answers: {user.stats.answers}
-          score: {user.stats.score}
-        </div>);
+      .map(user => this.renderCard(user));
 
-    return <div>{users}</div>
+    return <div>
+       <Navbar/>
+       <Container>{users}</Container>
+     </div>
   }
 }
 
