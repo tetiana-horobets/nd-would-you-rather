@@ -3,6 +3,7 @@ import {Redirect, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import QuestionPreview from './components/QuestionPreview.js';
 import {showAnsweredQuestions, showUnansweredQuestions} from './store/ActionCreators.js';
+import Navbar from './components/Navbar.js';
 
 class HomePage extends React.Component {
 
@@ -43,9 +44,7 @@ class HomePage extends React.Component {
     }
 
     return <div>
-       <h1>Current user: {this.props.selectedUser}</h1>
-       <Link to={'/logout'}>Logout</Link><br/>
-       <Link to={'/new-question'}>Create new question</Link>
+       <Navbar/>
        <div>
         {this.props.questionsDisplayPreference === 'ANSWERED' && this.renderAnsweredQuestions()}
         {this.props.questionsDisplayPreference === 'UNANSWERED' && this.renderUnansweredQuestions()}

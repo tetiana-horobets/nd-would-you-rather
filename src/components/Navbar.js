@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
 
 class AppNavbar extends React.Component {
 
@@ -11,14 +12,15 @@ class AppNavbar extends React.Component {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/new-question">New Question</Nav.Link>
-          <Nav.Link href="/leaderboard">Leader Board</Nav.Link>
+          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/new-question" className="nav-link">New Question</Link>
+          <Link to="/leaderboard" className="nav-link">Leader Board</Link>
         </Nav>
       </Navbar.Collapse>
       {this.props.users && this.props.selectedUser && <Navbar.Collapse className="justify-content-end">
         <Navbar.Text>
           Signed in as: {this.props.users[this.props.selectedUser].name}
+          &nbsp;<Link to={'/logout'}>Logout</Link>
         </Navbar.Text>
       </Navbar.Collapse>}
     </Navbar>
