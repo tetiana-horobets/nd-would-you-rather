@@ -18,7 +18,6 @@ class SigninPage extends React.Component {
     }
     const users = Object.entries(this.props.users)
       .map(entry => <Dropdown.Item key={entry[1].id} onClick={() => this.selectUser(entry[1].id)}>{entry[1].name}</Dropdown.Item>);
-    //return <div>{users}</div>
     return <Container>
       <Card style={{ width: '22rem', margin: '1em auto'}}>
         <Card.Body>

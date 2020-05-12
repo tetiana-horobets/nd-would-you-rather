@@ -3,7 +3,6 @@ import {
   LOAD_QUESTIONS,
   SELECT_USER,
   LOGOUT,
-  CHANGE_QUESTIONS_DISPLAY_PREFERENCE,
   VOTE,
   CREATE_NEW_QUESTION
 } from './Actions.js'
@@ -63,19 +62,5 @@ export function selectUser(userId) {
 export function logout() {
   return {
       type: LOGOUT
-  }
-}
-
-export function showAnsweredQuestions() {
-  return {
-      type: CHANGE_QUESTIONS_DISPLAY_PREFERENCE,
-      displayedQuestions: 'ANSWERED'
-  }
-}
-
-export function showUnansweredQuestions() {
-  return {
-      type: CHANGE_QUESTIONS_DISPLAY_PREFERENCE,
-      displayedQuestions: 'UNANSWERED'
   }
 }

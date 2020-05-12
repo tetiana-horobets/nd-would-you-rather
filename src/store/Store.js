@@ -5,7 +5,6 @@ import {
   LOAD_QUESTIONS,
   SELECT_USER,
   LOGOUT,
-  CHANGE_QUESTIONS_DISPLAY_PREFERENCE,
   VOTE,
   CREATE_NEW_QUESTION
 } from './Actions.js'
@@ -55,18 +54,10 @@ function selectedUserReducer(state = null, action) {
   return state;
 }
 
-function questionsDisplayPreferenceReducer(state = 'UNANSWERED', action) {
-  if (action.type === CHANGE_QUESTIONS_DISPLAY_PREFERENCE) {
-    return action.displayedQuestions;
-  }
-  return state;
-}
-
 const store = createStore(combineReducers({
   users: usersReducer,
   selectedUser: selectedUserReducer,
   questions: questionsReducer,
-  questionsDisplayPreference: questionsDisplayPreferenceReducer,
   qestionCreated: questionCreatedReducer
 }), applyMiddleware(thunk));
 

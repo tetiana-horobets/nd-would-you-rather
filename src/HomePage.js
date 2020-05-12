@@ -2,8 +2,10 @@ import React from 'react';
 import {Redirect, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import QuestionPreview from './components/QuestionPreview.js';
-import {showAnsweredQuestions, showUnansweredQuestions} from './store/ActionCreators.js';
 import Navbar from './components/Navbar.js';
+import Container from 'react-bootstrap/Container';
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
 
 class HomePage extends React.Component {
 
@@ -19,10 +21,7 @@ class HomePage extends React.Component {
         key={question.id}
         question={question}
       />);
-      return <div>
-        <button onClick={() => this.props.showAnsweredQuestions()}>Show answered</button>
-        <div>{questions}</div>
-       </div>
+      return <div>{questions}</div>
   }
 
   renderAnsweredQuestions() {
@@ -32,10 +31,7 @@ class HomePage extends React.Component {
         key={question.id}
         question={question}
       />);
-      return <div>
-        <button onClick={() => this.props.showUnansweredQuestions()}>Show unanswered</button>
-        <div>{questions}</div>
-       </div>
+      return <div>{questions}</div>
   }
 
   render() {
@@ -45,10 +41,16 @@ class HomePage extends React.Component {
 
     return <div>
        <Navbar/>
-       <div>
-        {this.props.questionsDisplayPreference === 'ANSWERED' && this.renderAnsweredQuestions()}
-        {this.props.questionsDisplayPreference === 'UNANSWERED' && this.renderUnansweredQuestions()}
-       </div>
+       <Container>
+         <Tabs defaultActiveKey="unanswered" style={{marginTop: '1em'}}>
+          <Tab eventKey="unanswered" title="Unanswered questions">
+            {this.renderUnansweredQuestions()}
+          </Tab>
+          <Tab eventKey="answered" title="Answered questions">
+            {this.renderAnsweredQuestions()}
+          </Tab>
+        </Tabs>
+       </Container>
      </div>
    }
 }
@@ -57,12 +59,11 @@ const mapStateToProps = state => {
   return {
     users: state.users,
     selectedUser: state.selectedUser,
-    questions: state.questions,
-    questionsDisplayPreference: state.questionsDisplayPreference
+    questions: state.questions
   }
 }
 
-const mapDispatchToProps = {showAnsweredQuestions, showUnansweredQuestions}
+const mapDispatchToProps = {}
 
 export default connect(
   mapStateToProps,
