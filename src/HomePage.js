@@ -20,6 +20,7 @@ class HomePage extends React.Component {
       .map(question => <QuestionPreview
         key={question.id}
         question={question}
+        author={this.props.users[question.author]}
       />);
       return <div>{questions}</div>
   }
@@ -30,6 +31,7 @@ class HomePage extends React.Component {
       .map(question => <QuestionPreview
         key={question.id}
         question={question}
+        author={this.props.users[question.author]}
       />);
       return <div>{questions}</div>
   }
