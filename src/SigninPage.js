@@ -22,14 +22,14 @@ class SigninPage extends React.Component {
       <Card style={{ width: '22rem', margin: '1em auto'}}>
         <Card.Body>
           <Card.Title>Welcome to Would You Rather!</Card.Title>
-          <Card.Text>
+          <div>
             <Dropdown>
               <Dropdown.Toggle variant="success" id="dropdown-basic">
                 Select user
               </Dropdown.Toggle>
               <Dropdown.Menu>{users}</Dropdown.Menu>
             </Dropdown>
-          </Card.Text>
+          </div>
         </Card.Body>
       </Card>
     </Container>

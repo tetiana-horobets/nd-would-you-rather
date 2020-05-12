@@ -2,8 +2,10 @@ import React from 'react';
 import {createNewQuestion} from './store/ActionCreators.js';
 import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import Navbar from './components/Navbar.js';
+import Card from 'react-bootstrap/Card';
 
-class NewQuestion extends React.Component {
+class NewQuestionPage extends React.Component {
 
   state = {
    optionOne: '',
@@ -29,13 +31,20 @@ class NewQuestion extends React.Component {
     }
 
     return <div>
-    <h1>Create new question</h1>
-      <h2>Would you rather ...</h2>
-        <input type="text" name="optionOne" value={this.state.optionOne} onChange={this.changeHandlerOptionOne}/>
-          <h4>OR</h4>
-        <input type="text" name="optionTwo" value={this.state.optionTwo} onChange={this.changeHandlerOptionTwo}/>
-      <button onClick={() => this.createNewQuestion()}>Submit</button>
-      {this.props.qestionCreated && <p>Quetion has been created</p>}
+      <Navbar/>
+      <Card style={{ width: '22rem', margin: '1em auto'}}>
+        <Card.Body>
+          <Card.Title>Create new question</Card.Title>
+          <div>
+            Would you rather ...<br/>
+            <input type="text" name="optionOne" value={this.state.optionOne} onChange={this.changeHandlerOptionOne}/>
+            <div>OR</div>
+            <input type="text" name="optionTwo" value={this.state.optionTwo} onChange={this.changeHandlerOptionTwo}/><br/><br/>
+            <button onClick={() => this.createNewQuestion()}>Submit</button>
+            {this.props.qestionCreated && <p>Quetion has been created</p>}
+          </div>
+        </Card.Body>
+      </Card>
     </div>
   }
 }
@@ -51,4 +60,4 @@ const mapDispatchToProps = {createNewQuestion}
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NewQuestion);
+)(NewQuestionPage);

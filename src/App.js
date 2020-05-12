@@ -6,7 +6,7 @@ import LeaderboardPage from './LeaderboardPage.js';
 import SigninPage from './SigninPage.js';
 import LogoutPage from './LogoutPage.js';
 import QuestionPage from './QuestionPage.js';
-import NewQuestion from './NewQuestion.js';
+import NewQuestion from './NewQuestionPage.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {
