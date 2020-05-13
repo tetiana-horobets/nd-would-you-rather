@@ -17,14 +17,17 @@ class QuestionPage extends React.Component {
       || question.optionTwo.votes.includes(this.props.selectedUser)
   }
 
-  renderStats(question) {
+  renderStats(question, user) {
     const optionOneVotes = question.optionOne.votes.length;
     const optionTwoVotes = question.optionTwo.votes.length;
     const totalVotes = optionOneVotes + optionTwoVotes;
 
+    const yourAnswer1 = user.answers[question.id] === 'optionOne' ? <span>&nbsp;- your answer</span> : <span/>;
+    const yourAnswer2 = user.answers[question.id] === 'optionTwo' ? <span>&nbsp;- your answer</span> : <span/>;
+
     return <div>
-      {question.optionOne.text}: {optionOneVotes} / {totalVotes}<br/>
-      {question.optionTwo.text}: {optionTwoVotes} / {totalVotes}
+      {question.optionOne.text}: {optionOneVotes} / {totalVotes}{yourAnswer1}<br/>
+      {question.optionTwo.text}: {optionTwoVotes} / {totalVotes}{yourAnswer2}
     </div>
   }
 
@@ -52,7 +55,7 @@ class QuestionPage extends React.Component {
             {user.avatarURL && <Image src={user.avatarURL} rounded />}
             <h6>Would you rather?</h6>
             {!this.hasVoted(question) && this.renderForm(question)}
-            {this.hasVoted(question) && this.renderStats(question)}
+            {this.hasVoted(question) && this.renderStats(question, user)}
           </div>
         </Card.Body>
       </Card>
