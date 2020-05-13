@@ -22,12 +22,12 @@ class LeaderboardPage extends React.Component {
     return <Card key={user.id} style={{ width: '22rem', margin: '1em auto'}}>
       <Card.Body>
         <Card.Title>{user.name}</Card.Title>
-        <Card.Text>
+        <div>
           {user.avatarURL && <Image src={user.avatarURL} rounded />}
           <p>Answered questions: {user.stats.questions}</p>
           <p>Created questions: {user.stats.answers}</p>
           <p>Score: {user.stats.score}</p>
-        </Card.Text>
+        </div>
       </Card.Body>
     </Card>
   }

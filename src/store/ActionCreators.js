@@ -3,8 +3,7 @@ import {
   LOAD_QUESTIONS,
   SELECT_USER,
   LOGOUT,
-  VOTE,
-  CREATE_NEW_QUESTION
+  VOTE
 } from './Actions.js'
 import {_getUsers, _getQuestions, _saveQuestionAnswer, _saveQuestion} from '../_DATA.js';
 
@@ -18,7 +17,6 @@ export function createNewQuestion(optionOneText, optionTwoText, author) {
     _saveQuestion(question).then(data => {
       loadQuestions()(dispatch);
       loadUsers()(dispatch);
-      dispatch({type: CREATE_NEW_QUESTION});
     })
   }
 }

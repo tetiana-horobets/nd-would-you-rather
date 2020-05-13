@@ -1,7 +1,7 @@
 import React from 'react';
 import {createNewQuestion} from './store/ActionCreators.js';
 import { connect } from 'react-redux';
-import {Redirect} from 'react-router-dom';
+import {Redirect, useHistory} from 'react-router-dom';
 import Navbar from './components/Navbar.js';
 import Card from 'react-bootstrap/Card';
 
@@ -22,12 +22,16 @@ class NewQuestionPage extends React.Component {
 
   createNewQuestion() {
     this.props.createNewQuestion(this.state.optionOne, this.state.optionTwo, this.props.selectedUser);
-    this.setState({optionOne: '', optionTwo: ''});
+    this.setState({questionCreated: true});
   }
 
   render() {
     if (!this.props.selectedUser) {
       return <Redirect to={'/signin'}/>
+    }
+
+    if (this.state.questionCreated) {
+      return <Redirect to={'/'}/>
     }
 
     return <div>
@@ -41,7 +45,6 @@ class NewQuestionPage extends React.Component {
             <div>OR</div>
             <input type="text" name="optionTwo" value={this.state.optionTwo} onChange={this.changeHandlerOptionTwo}/><br/><br/>
             <button onClick={() => this.createNewQuestion()}>Submit</button>
-            {this.props.qestionCreated && <p>Quetion has been created</p>}
           </div>
         </Card.Body>
       </Card>
@@ -51,7 +54,6 @@ class NewQuestionPage extends React.Component {
 const mapStateToProps = state => {
   return {
     selectedUser: state.selectedUser,
-    qestionCreated: state.qestionCreated
   }
 }
 

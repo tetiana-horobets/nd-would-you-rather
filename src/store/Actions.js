@@ -3,4 +3,3 @@ export const LOAD_QUESTIONS = "LOAD_QUESTIONS"
 export const SELECT_USER = "SELECT_USER";
 export const LOGOUT = "LOGOUT";
 export const VOTE = "VOTE";
-export const CREATE_NEW_QUESTION = "CREATE_NEW_QUESTION";

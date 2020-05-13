@@ -5,17 +5,9 @@ import {
   LOAD_QUESTIONS,
   SELECT_USER,
   LOGOUT,
-  VOTE,
-  CREATE_NEW_QUESTION
+  VOTE
 } from './Actions.js'
 import { combineReducers } from 'redux'
-
-function questionCreatedReducer(state = false, action) {
-  if (action.type === CREATE_NEW_QUESTION) {
-    return true;
-  }
-  return state;
-}
 
 function usersReducer(state = {}, action) {
   if (action.type === LOAD_USERS){
@@ -58,7 +50,6 @@ const store = createStore(combineReducers({
   users: usersReducer,
   selectedUser: selectedUserReducer,
   questions: questionsReducer,
-  qestionCreated: questionCreatedReducer
 }), applyMiddleware(thunk));
 
 export default store;
