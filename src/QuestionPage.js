@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import {vote} from './store/ActionCreators.js';
+import Navbar from './components/Navbar.js';
+import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
 
 class QuestionPage extends React.Component {
 
@@ -30,6 +33,7 @@ class QuestionPage extends React.Component {
       return <Redirect to={'/signin'}/>
     }
 
+    const user = this.props.users[this.props.selectedUser];
     const question = this.props.questions[this.props.questionId];
 
     if (this.hasVoted(question)) {
@@ -37,9 +41,18 @@ class QuestionPage extends React.Component {
     }
 
     return <div>
-      <h1>Would you rather?</h1>
-      <div onClick={() => this.vote('optionOne')}>{question.optionOne.text}</div>
-      <div onClick={() => this.vote('optionTwo')}>{question.optionTwo.text}</div>
+      <Navbar/>
+      <Card style={{ width: '22rem', margin: '1em auto'}}>
+        <Card.Body>
+          <Card.Title>Asked by {user.name}</Card.Title>
+          <div>
+            {user.avatarURL && <Image src={user.avatarURL} rounded />}
+            <h6>Would you rather?</h6>
+            <Form.Check type="radio" label={question.optionOne.text} onClick={() => this.vote('optionOne')} />
+            <Form.Check type="radio" label={question.optionTwo.text} onClick={() => this.vote('optionTwo')} />
+          </div>
+        </Card.Body>
+      </Card>
     </div>
   }
 }
@@ -48,6 +61,7 @@ const mapStateToProps = state => {
   return {
     selectedUser: state.selectedUser,
     questions: state.questions,
+    users: state.users
   }
 }
 
