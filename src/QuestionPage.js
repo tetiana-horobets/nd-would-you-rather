@@ -5,6 +5,7 @@ import {vote} from './store/ActionCreators.js';
 import Navbar from './components/Navbar.js';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 class QuestionPage extends React.Component {
 
@@ -25,9 +26,14 @@ class QuestionPage extends React.Component {
     const yourAnswer1 = user.answers[question.id] === 'optionOne' ? <span>&nbsp;- your answer</span> : <span/>;
     const yourAnswer2 = user.answers[question.id] === 'optionTwo' ? <span>&nbsp;- your answer</span> : <span/>;
 
+    const votes1 = (optionOneVotes / totalVotes) * 100;
+    const votes2 = (optionTwoVotes / totalVotes) * 100;
+
     return <div>
-      {question.optionOne.text}: {optionOneVotes} / {totalVotes}{yourAnswer1}<br/>
-      {question.optionTwo.text}: {optionTwoVotes} / {totalVotes}{yourAnswer2}
+      {question.optionOne.text}{yourAnswer1}<br/>
+      <ProgressBar now={votes1} label={`${votes1}% ${optionOneVotes} / ${totalVotes}`} /><br/>
+      {question.optionTwo.text}{yourAnswer2}<br/>
+      <ProgressBar now={votes2} label={`${votes2}% ${optionTwoVotes} / ${totalVotes}`} />
     </div>
   }
 
