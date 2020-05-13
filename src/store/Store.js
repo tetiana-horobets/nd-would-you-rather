@@ -4,8 +4,7 @@ import {
   LOAD_USERS,
   LOAD_QUESTIONS,
   SELECT_USER,
-  LOGOUT,
-  VOTE
+  LOGOUT
 } from './Actions.js'
 import { combineReducers } from 'redux'
 
@@ -20,19 +19,6 @@ function questionsReducer(state = {}, action) {
   if (action.type === LOAD_QUESTIONS) {
     return action.questions;
   }
-
-  if (action.type === VOTE) {
-    const newQuestions = Object.assign({}, state);
-
-    if (action.vote === 'optionOne') {
-      newQuestions[action.questionId].optionOne.votes.push(action.userId);
-    } else {
-      newQuestions[action.questionId].optionOne.votes.push(action.userId);
-    }
-
-    return newQuestions;
-  }
-
   return state;
 }
 

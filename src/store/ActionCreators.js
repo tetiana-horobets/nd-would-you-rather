@@ -2,8 +2,7 @@ import {
   LOAD_USERS,
   LOAD_QUESTIONS,
   SELECT_USER,
-  LOGOUT,
-  VOTE
+  LOGOUT
 } from './Actions.js'
 import {_getUsers, _getQuestions, _saveQuestionAnswer, _saveQuestion} from '../_DATA.js';
 
@@ -23,12 +22,11 @@ export function createNewQuestion(optionOneText, optionTwoText, author) {
 
 export function vote(userId, questionId, vote) {
   const answer = {authedUser: userId, qid: questionId, answer: vote};
-  _saveQuestionAnswer(answer);
-  return {
-      type: VOTE,
-      userId: userId,
-      questionId: questionId,
-      vote: vote
+  return dispatch => {
+    _saveQuestionAnswer(answer).then(data => {
+      loadQuestions()(dispatch);
+      loadUsers()(dispatch);
+    })
   }
 }
 

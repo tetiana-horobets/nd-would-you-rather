@@ -9,8 +9,13 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 
 class QuestionPage extends React.Component {
 
+  state = {
+   voted: false
+  }
+
   vote(option) {
     this.props.vote(this.props.selectedUser, this.props.questionId, option);
+    this.setState({voted: true});
   }
 
   hasVoted(question) {
@@ -38,6 +43,10 @@ class QuestionPage extends React.Component {
   }
 
   renderForm(question) {
+    if (this.state.voted) {
+      return <div>Please wait</div>;
+    }
+
     return <div>
       <Form.Check type="radio" label={question.optionOne.text} onClick={() => this.vote('optionOne')} />
       <Form.Check type="radio" label={question.optionTwo.text} onClick={() => this.vote('optionTwo')} />
