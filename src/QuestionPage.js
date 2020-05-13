@@ -23,8 +23,15 @@ class QuestionPage extends React.Component {
     const totalVotes = optionOneVotes + optionTwoVotes;
 
     return <div>
-      Option one: {optionOneVotes} / {totalVotes}<br/>
-      Option two: {optionTwoVotes} / {totalVotes}
+      {question.optionOne.text}: {optionOneVotes} / {totalVotes}<br/>
+      {question.optionTwo.text}: {optionTwoVotes} / {totalVotes}
+    </div>
+  }
+
+  renderForm(question) {
+    return <div>
+      <Form.Check type="radio" label={question.optionOne.text} onClick={() => this.vote('optionOne')} />
+      <Form.Check type="radio" label={question.optionTwo.text} onClick={() => this.vote('optionTwo')} />
     </div>
   }
 
@@ -36,10 +43,6 @@ class QuestionPage extends React.Component {
     const user = this.props.users[this.props.selectedUser];
     const question = this.props.questions[this.props.questionId];
 
-    if (this.hasVoted(question)) {
-      return this.renderStats(question)
-    }
-
     return <div>
       <Navbar/>
       <Card style={{ width: '22rem', margin: '1em auto'}}>
@@ -48,8 +51,8 @@ class QuestionPage extends React.Component {
           <div>
             {user.avatarURL && <Image src={user.avatarURL} rounded />}
             <h6>Would you rather?</h6>
-            <Form.Check type="radio" label={question.optionOne.text} onClick={() => this.vote('optionOne')} />
-            <Form.Check type="radio" label={question.optionTwo.text} onClick={() => this.vote('optionTwo')} />
+            {!this.hasVoted(question) && this.renderForm(question)}
+            {this.hasVoted(question) && this.renderStats(question)}
           </div>
         </Card.Body>
       </Card>
