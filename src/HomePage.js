@@ -17,6 +17,7 @@ class HomePage extends React.Component {
   renderUnansweredQuestions() {
     const questions = Object.values(this.props.questions)
       .filter(question => !this.hasVoted(question))
+      .sort((question1, question2) => question2.timestamp - question1.timestamp)
       .map(question => <QuestionPreview
         key={question.id}
         question={question}
@@ -28,6 +29,7 @@ class HomePage extends React.Component {
   renderAnsweredQuestions() {
     const questions = Object.values(this.props.questions)
       .filter(question => this.hasVoted(question))
+      .sort((question1, question2) => question2.timestamp - question1.timestamp)
       .map(question => <QuestionPreview
         key={question.id}
         question={question}
