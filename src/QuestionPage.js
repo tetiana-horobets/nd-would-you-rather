@@ -56,7 +56,7 @@ class QuestionPage extends React.Component {
 
   render() {
     if (!this.props.selectedUser) {
-      return <Redirect to={'/signin'}/>
+      return <Redirect to={'/signin?to=' + encodeURI('/question/' + this.props.questionId)}/>;
     }
 
     const user = this.props.users[this.props.selectedUser];

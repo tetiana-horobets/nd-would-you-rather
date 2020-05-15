@@ -27,7 +27,7 @@ class NewQuestionPage extends React.Component {
 
   render() {
     if (!this.props.selectedUser) {
-      return <Redirect to={'/signin'}/>
+      return <Redirect to={'/signin?to=' + encodeURI('/new-question')}/>;
     }
 
     if (this.state.questionCreated) {

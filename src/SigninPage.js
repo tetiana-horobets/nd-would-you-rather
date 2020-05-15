@@ -14,7 +14,8 @@ class SigninPage extends React.Component {
 
   render() {
     if (this.props.selectedUser) {
-      return <Redirect to={'/'}/>
+      const to = this.props.to || '/';
+      return <Redirect to={to}/>
     }
     const users = Object.entries(this.props.users)
       .map(entry => <Dropdown.Item key={entry[1].id} onClick={() => this.selectUser(entry[1].id)}>{entry[1].name}</Dropdown.Item>);

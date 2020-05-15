@@ -9,6 +9,7 @@ import QuestionPage from './QuestionPage.js';
 import NewQuestionPage from './NewQuestionPage.js';
 import NotFoundPage from './NotFoundPage.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import queryString from 'query-string';
 
 import {
   BrowserRouter as Router,
@@ -28,7 +29,9 @@ class App extends React.Component {
       <Switch>
         <Route path="/" exact component={() => <HomePage/>}/>
         <Route path="/leaderboard" exact component={() => <LeaderboardPage/>}/>
-        <Route path="/signin" exact component={() => <SigninPage/>}/>
+        <Route path="/signin" exact component={data => {
+          const values = queryString.parse(data.location.search)
+          return <SigninPage to={values.to}/>}}/>
         <Route path="/logout" exact component={() => <LogoutPage/>}/>
         <Route path="/new-question" exact component={() => <NewQuestionPage/>}/>
         <Route
