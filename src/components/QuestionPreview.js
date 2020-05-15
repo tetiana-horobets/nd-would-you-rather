@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
+import ProfilePicture from './ProfilePicture.js';
 
 export default class QuestionPreview extends React.Component {
 
@@ -10,7 +11,7 @@ export default class QuestionPreview extends React.Component {
       <Card.Body>
         <Card.Title>Question from {this.props.author.name}</Card.Title>
         <Card.Text>
-          {this.props.author.avatarURL && <Image src={this.props.author.avatarURL} rounded />}
+          <ProfilePicture user={this.props.author} />
           Would you rather {this.props.question.optionOne.text}?<br/>
           <Link to={'/question/' + this.props.question.id}>View poll</Link>
         </Card.Text>

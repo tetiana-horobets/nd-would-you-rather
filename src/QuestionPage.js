@@ -6,6 +6,7 @@ import Navbar from './components/Navbar.js';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import ProfilePicture from './components/ProfilePicture.js';
 
 class QuestionPage extends React.Component {
 
@@ -67,7 +68,7 @@ class QuestionPage extends React.Component {
         <Card.Body>
           <Card.Title>Asked by {user.name}</Card.Title>
           <div>
-            {user.avatarURL && <Image src={user.avatarURL} rounded />}
+            <ProfilePicture user={user} />
             <h6>Would you rather?</h6>
             {!this.hasVoted(question) && this.renderForm(question)}
             {this.hasVoted(question) && this.renderStats(question, user)}

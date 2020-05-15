@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Navbar from './components/Navbar.js';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import Image from 'react-bootstrap/Image';
+import ProfilePicture from './components/ProfilePicture.js';
 
 class LeaderboardPage extends React.Component {
 
@@ -23,7 +23,7 @@ class LeaderboardPage extends React.Component {
       <Card.Body>
         <Card.Title>{user.name}</Card.Title>
         <div>
-          {user.avatarURL && <Image src={user.avatarURL} rounded />}
+          <ProfilePicture user={user} />
           <p>Answered questions: {user.stats.questions}</p>
           <p>Created questions: {user.stats.answers}</p>
           <p>Score: {user.stats.score}</p>
