@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {loadUsers, loadQuestions} from './store/ActionCreators.js';
-import HomePage from './HomePage.js';
-import LeaderboardPage from './LeaderboardPage.js';
-import SigninPage from './SigninPage.js';
-import LogoutPage from './LogoutPage.js';
-import QuestionPage from './QuestionPage.js';
-import NewQuestionPage from './NewQuestionPage.js';
-import NotFoundPage from './NotFoundPage.js';
+import HomePage from './pages/HomePage.js';
+import LeaderboardPage from './pages/LeaderboardPage.js';
+import SigninPage from './pages/SigninPage.js';
+import LogoutPage from './pages/LogoutPage.js';
+import QuestionPage from './pages/QuestionPage.js';
+import NewQuestionPage from './pages/NewQuestionPage.js';
+import NotFoundPage from './pages/NotFoundPage.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import queryString from 'query-string';
 

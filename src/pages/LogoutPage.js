@@ -1,7 +1,7 @@
 import React from 'react';
 import {Redirect} from "react-router-dom";
 import { connect } from 'react-redux';
-import {logout} from './store/ActionCreators.js';
+import {logout} from '../store/ActionCreators.js';
 
 class LogoutPage extends React.Component {
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Navbar from './components/Navbar.js';
+import Navbar from '../components/Navbar.js';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import ProfilePicture from './components/ProfilePicture.js';
+import ProfilePicture from '../components/ProfilePicture.js';
 
 class LeaderboardPage extends React.Component {
 

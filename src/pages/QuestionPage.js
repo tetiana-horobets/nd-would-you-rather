@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import {vote} from './store/ActionCreators.js';
-import Navbar from './components/Navbar.js';
+import {vote} from '../store/ActionCreators.js';
+import Navbar from '../components/Navbar.js';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import ProfilePicture from './components/ProfilePicture.js';
+import ProfilePicture from '../components/ProfilePicture.js';
 import NotFoundPage from './NotFoundPage.js';
 
 class QuestionPage extends React.Component {

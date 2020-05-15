@@ -1,11 +1,11 @@
 import React from 'react';
-import {selectUser} from './store/ActionCreators.js';
+import {selectUser} from '../store/ActionCreators.js';
 import {Redirect} from "react-router-dom";
 import { connect } from 'react-redux';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Navbar from './components/Navbar.js';
+import Navbar from '../components/Navbar.js';
 
 class SigninPage extends React.Component {
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import {createNewQuestion} from './store/ActionCreators.js';
+import {createNewQuestion} from '../store/ActionCreators.js';
 import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import Navbar from './components/Navbar.js';
+import Navbar from '../components/Navbar.js';
 import Card from 'react-bootstrap/Card';
 
 class NewQuestionPage extends React.Component {

@@ -1,8 +1,8 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
-import QuestionPreview from './components/QuestionPreview.js';
-import Navbar from './components/Navbar.js';
+import QuestionPreview from '../components/QuestionPreview.js';
+import Navbar from '../components/Navbar.js';
 import Container from 'react-bootstrap/Container';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
