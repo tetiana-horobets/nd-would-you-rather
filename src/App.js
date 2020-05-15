@@ -6,12 +6,14 @@ import LeaderboardPage from './LeaderboardPage.js';
 import SigninPage from './SigninPage.js';
 import LogoutPage from './LogoutPage.js';
 import QuestionPage from './QuestionPage.js';
-import NewQuestion from './NewQuestionPage.js';
+import NewQuestionPage from './NewQuestionPage.js';
+import NotFoundPage from './NotFoundPage.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {
   BrowserRouter as Router,
-  Route
+  Route,
+  Switch
 } from "react-router-dom";
 
 class App extends React.Component {
@@ -23,15 +25,18 @@ class App extends React.Component {
 
   render() {
     return <Router>
-      <Route path="/" exact component={() => <HomePage/>}/>
-      <Route path="/leaderboard" component={() => <LeaderboardPage/>}/>
-      <Route path="/signin" component={() => <SigninPage/>}/>
-      <Route path="/logout" component={() => <LogoutPage/>}/>
-      <Route path="/new-question" component={() => <NewQuestion/>}/>
-      <Route
-        path="/question/:id"
-        component={(data) => <QuestionPage questionId={data.match.params.id}
-      />}/>
+      <Switch>
+        <Route path="/" exact component={() => <HomePage/>}/>
+        <Route path="/leaderboard" exact component={() => <LeaderboardPage/>}/>
+        <Route path="/signin" exact component={() => <SigninPage/>}/>
+        <Route path="/logout" exact component={() => <LogoutPage/>}/>
+        <Route path="/new-question" exact component={() => <NewQuestionPage/>}/>
+        <Route
+          path="/question/:id"
+          component={(data) => <QuestionPage questionId={data.match.params.id}
+        />}/>
+        <Route path="*" component={() => <NotFoundPage/>}/>
+      </Switch>
     </Router>
   }
 }
