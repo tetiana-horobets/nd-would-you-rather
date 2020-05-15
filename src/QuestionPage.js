@@ -7,6 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import ProfilePicture from './components/ProfilePicture.js';
+import NotFoundPage from './NotFoundPage.js';
 
 class QuestionPage extends React.Component {
 
@@ -61,6 +62,10 @@ class QuestionPage extends React.Component {
 
     const user = this.props.users[this.props.selectedUser];
     const question = this.props.questions[this.props.questionId];
+
+    if (!question) {
+      return <NotFoundPage/>
+    }
 
     return <div>
       <Navbar/>
