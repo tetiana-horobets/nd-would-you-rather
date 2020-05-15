@@ -10,11 +10,11 @@ export default class QuestionPreview extends React.Component {
     return <Card style={{ width: '22rem', margin: '1em auto'}}>
       <Card.Body>
         <Card.Title>Question from {this.props.author.name}</Card.Title>
-        <Card.Text>
+        <div>
           <ProfilePicture user={this.props.author} />
           Would you rather {this.props.question.optionOne.text}?<br/>
           <Link to={'/question/' + this.props.question.id}>View poll</Link>
-        </Card.Text>
+        </div>
       </Card.Body>
     </Card>
   }

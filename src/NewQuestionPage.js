@@ -1,7 +1,7 @@
 import React from 'react';
 import {createNewQuestion} from './store/ActionCreators.js';
 import { connect } from 'react-redux';
-import {Redirect, useHistory} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import Navbar from './components/Navbar.js';
 import Card from 'react-bootstrap/Card';
 

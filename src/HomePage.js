@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect, Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import QuestionPreview from './components/QuestionPreview.js';
 import Navbar from './components/Navbar.js';
@@ -46,7 +46,7 @@ class HomePage extends React.Component {
     return <div>
        <Navbar/>
        <Container>
-         <Tabs defaultActiveKey="unanswered" style={{marginTop: '1em'}}>
+         <Tabs transition={false} defaultActiveKey="unanswered" style={{marginTop: '1em'}}>
           <Tab eventKey="unanswered" title="Unanswered questions">
             {this.renderUnansweredQuestions()}
           </Tab>
